@@ -69,12 +69,12 @@ pub fn clean(path: &Path) -> Result<(), Error> {
 /// # Errors
 /// returns an instance of `Error::CompileFailed`, containing the output of stdout and stderr from the
 /// execution.
-fn compile_crate<P: AsRef<Path>>(
+fn compile_crate<PS: AsRef<Path>, PC: AsRef<Path>>(
     name: &str,
     version: &str,
-    src_path: P,
-    bc_root: P,
-) -> Result<(), Error> {
+    src_path: PS,
+    bc_root: PC,
+) -> Result<(), libpainter::Error> {
     let fullname = format!("{}-{}", &name, version);
     let output_dir = bc_root.as_ref().join(&fullname);
 
